@@ -129,7 +129,8 @@ class ConnectionSettings(QWidget):
         self.linkTableWidget.setRowCount(len(self.data.allLinks.linkSet))
         for index in range(0, len(self.data.allLinks.linkSet)):
             self.linkTableWidget.setItem(index, 0, QTableWidgetItem(str(index)))
-            self.linkTableWidget.setItem(index, 1, QTableWidgetItem(str(self.data.allLinks.linkSet[index].linkType)))
+            # 这里将链路类型设置为str
+            self.linkTableWidget.setItem(index, 1, QTableWidgetItem(str(self.data.allLinks.linkSet[index].linkTypeStr)))
             self.linkTableWidget.setItem(index, 2, QTableWidgetItem(str(self.data.allLinks.linkSet[index].linkInfo)))
 
     def clearAllLinks(self):
