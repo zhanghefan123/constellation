@@ -1,0 +1,10 @@
+# ninja log v5
+0	224	1667998331973729463	CMakeFiles/c___learning.dir/cpp_basic/InputAndOutput.cpp.o	fbe30b386cfc79d2
+0	16	1667998847311185186	CMakeFiles/c___learning.dir/cpp_basic/ConcatStringWithSStream.cpp.o	2f98f52722b1b6c4
+1	194	1668000455777911476	CMakeFiles/c___learning.dir/cpp_basic/Main.cpp.o	227df20a2b51f521
+1	186	1668000455769039554	CMakeFiles/c___learning.dir/cpp_basic/source/InlineFunction.cpp.o	7a422c773ff45764
+0	16	1667998847311185269	CMakeFiles/c___learning.dir/cpp_basic/CinAndCout.cpp.o	bcce5dfbac3eb9fc
+0	222	1667999596091140565	CMakeFiles/c___learning.dir/cpp_basic/source/Main.cpp.o	4114cd23dae3ae89
+1	224	1667999663873560301	CMakeFiles/c___learning.dir/cpp_basic/source/CinAndCout.cpp.o	74d4ebcc9fc12347
+194	217	1668000455801780025	c___learning	8942b0d7b8982ece
+1	194	1667999785500225022	CMakeFiles/c___learning.dir/cpp_basic/source/ConcatStringWithSStream.cpp.o	7ad7dfc2cf3aa1fb
