@@ -123,7 +123,7 @@ simtime-resolution = ms
 # 进行统一的地面站的参数的设置
 *.GND*.mobility.labelColor ="#ffff00ff"
 *.GND*.mobility.typename = "GroundNodeMobility"
-*.GND*.mobility.modelURL = "Router higt-poly.obj"
+*.GND*.mobility.modelURL = "Router-higt-poly.obj"
 *.GND*.mobility.modelScale = 780000
 *.GND*.mobility.altitude = 0.000 km
 

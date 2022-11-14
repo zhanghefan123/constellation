@@ -1,7 +1,10 @@
+import os
+
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 
+from zhf_test.pojo.Data import Data
 from zhf_test.scriptGenerator.IniFileGenerator import IniFileGenerator
 from zhf_test.scriptGenerator.Ipv4ConfigFileGenerator import Ipv4ConfigFileGenerator
 from zhf_test.scriptGenerator.NedFileGenerator import NedFileGenerator
@@ -34,7 +37,6 @@ class ApplicationSettings(QWidget):
         self.nedFileGenerator = NedFileGenerator(self.data)
         self.ospfConfigFileGenerator = OspfConfigFileGenerator(self.data)
         self.linkConfigFileGenerator = LinkConfigFileGenerator(self.data)
-
 
     def initializeComponents(self) -> None:
         """
@@ -176,6 +178,14 @@ class ApplicationSettings(QWidget):
             self.applicationSettingWidget.setItem(index, 3, QTableWidgetItem(client.objectDestinationServer))
             index += 1
 
+    def moveFilesToProjectDirectory(self, dir_path) -> None:
+        """
+        我们要将运行仿真的文件放到项目目录之中去
+        """
+        pages_path = os.path.dirname(os.path.abspath("."))+"/files"
+        for item in os.listdir(pages_path):
+            os.system("cp " + pages_path+"/" + item + " " + dir_path)
+
     def generateConfigurationFile(self):
         """
         进行配置文件的生成
@@ -202,4 +212,10 @@ class ApplicationSettings(QWidget):
         pg_dialog.setValue(40000)
         link_config_file_path = prefix_path + self.data.projectName + "/link_config.xml"
         self.linkConfigFileGenerator.writeIntoConfigFile(link_config_file_path)
+        # 将文件拷贝到项目目录之中去
+        self.moveFilesToProjectDirectory(prefix_path + self.data.projectName)
         pg_dialog.close()
+
+
+if __name__ == "__main__":
+    print(os.path.dirname(os.path.abspath(".")))
