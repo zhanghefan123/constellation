@@ -17,8 +17,8 @@ class LinkSet:
         """
         return len(self.linkSet)
 
-    def addLink(self, node1Type: int, srcNode, node2Type: int, destNode: int, bandwidth, constellationName,
-                node1EthNum, node2EthNum, groundStationName=""):
+    def addLink(self, node1Type: int, srcNode, node2Type: int, destNode, bandwidth, constellationName,
+                node1EthNum, node2EthNum, groundStationName="",interOrIntra=0):
         """
         添加链路
         :param node2EthNum:
@@ -38,7 +38,7 @@ class LinkSet:
             node1EthNum, node2EthNum = node2EthNum, node1EthNum
         # 进行link的创建
         link = Link(self.getLinkCount(), node1Type, srcNode, node2Type, destNode, bandwidth, constellationName,
-                    node1EthNum, node2EthNum, groundStationName)
+                    node1EthNum, node2EthNum, groundStationName, interOrIntra)
         self.linkSet.append(link)
 
     def findLink(self, node1Type, srcNode, node2Type, destNode) -> bool:

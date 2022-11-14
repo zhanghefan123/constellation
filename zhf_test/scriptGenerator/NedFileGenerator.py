@@ -10,7 +10,7 @@ class NedFileGenerator(ConfigFileGenerator):
         self.data = data
 
     def generate(self) -> str:
-        final_str = ""
+        final_str = "package " + self.data.projectName + ";" + ENTER
         final_str += PreImportOfNedFile
         final_str += networkOfNedFile
         final_str += ParametersAndTypesOfNedFile
@@ -44,7 +44,7 @@ class NedFileGenerator(ConfigFileGenerator):
                 dest_node_name = link.destNode.sat_name
                 dest_eth_num = link.node2EthNum
                 final_str += TAB + TAB + \
-                             f"{src_node_name}.ethg[{src_eth_num}] <--> {dest_node_name}.ethg[{dest_eth_num}]"
+                             f"{src_node_name}.ethg[{src_eth_num}] <--> {link.bandwidth} <--> {dest_node_name}.ethg[{dest_eth_num}];"
                 final_str += ENTER
             elif link.linkType == LINK_TYPE_SATELLITE_TO_GROUNDSTATION:
                 src_node_name = link.srcNode.sat_name
@@ -52,7 +52,7 @@ class NedFileGenerator(ConfigFileGenerator):
                 dest_node_name = link.destNode.groundStationName
                 dest_eth_num = link.node2EthNum
                 final_str += TAB + TAB + \
-                             f"{src_node_name}.ethg[{src_eth_num}] <--> {dest_node_name}.ethg[{dest_eth_num}]"
+                             f"{src_node_name}.ethg[{src_eth_num}] <--> {link.bandwidth} <-->{dest_node_name}.ethg[{dest_eth_num}];"
                 final_str += ENTER
         final_str += "}"
         return final_str

@@ -2,6 +2,8 @@ NODE_TYPE_SATELLITE = 1
 NODE_TYPE_GROUNDSTATION = 2
 LINK_TYPE_SATELLITE_TO_SATELLITE = 3
 LINK_TYPE_SATELLITE_TO_GROUNDSTATION = 4
+LINK_TYPE_SATELLITE_TO_SATELLITE_INTRA = 31
+LINK_TYPE_SATELLITE_TO_SATELLITE_INTER = 32
 SATELLITE_TYPE = "SatComm"
 GROUND_STATION_TYPE = "GroundCommNode"
 TAB = "\t"
@@ -9,7 +11,7 @@ ENTER_AND_TAB = "\n\t"
 ENTER = "\n"
 # 进行NED文件提前的导入
 PreImportOfNedFile = """
-package masterNodes;
+
 
 import osgNodes.Clock;
 import osgNodes.ChannelController;
@@ -80,8 +82,7 @@ NecessarySubmodules = """
                 addDefaultRoutes = false;
         }
 """
-OSPFConfigPre = """
-<?xml version="1.0"?>
+OSPFConfigPre = """<?xml version="1.0"?>
 <OSPFASConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="OSPF.xsd">
 
   <!-- Areas -->
@@ -112,13 +113,6 @@ simtime-resolution = ms
 
 # ospf的配置文件
 **.ospf.ospfConfig = xmldoc("ospf_config.xml")
-
-# 进行统一的卫星的参数的设置
-*.sat*.mobility.labelColor ="#ffff00ff"
-*.sat*.mobility.typename ="SatMobility"
-*.sat*.mobility.modelURL="satellite.osgb"
-*.sat*.mobility.modelScale=78000
-
 
 # 进行统一的地面站的参数的设置
 *.GND*.mobility.labelColor ="#ffff00ff"

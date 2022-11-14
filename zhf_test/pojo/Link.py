@@ -3,7 +3,7 @@ from zhf_test.common.ConstVariable import *
 
 class Link:
     def __init__(self, linkId, node1Type, srcNode, node2Type, destNode, bandwidth, constellationName,
-                 node1EthNum, node2EthNum, groundStationName):
+                 node1EthNum, node2EthNum, groundStationName, interOrIntra):
         """
         :param linkId: 链路的唯一标识
         :param node1Type: 结点1的类型
@@ -26,6 +26,15 @@ class Link:
         self.generateLinkInfo()
         self.node1EthNum = node1EthNum
         self.node2EthNum = node2EthNum
+        self.interOrIntraStr = ""
+        self.interOrIntra = interOrIntra
+        self.generateInterOrIntraStr()
+
+    def generateInterOrIntraStr(self):
+        if self.interOrIntra == LINK_TYPE_SATELLITE_TO_SATELLITE_INTRA:
+            self.interOrIntraStr = "intra-orbit"
+        else:
+            self.interOrIntraStr = "inter-orbit"
 
     def generateLinkType(self):
         if self.node1Type == 1 and self.node2Type == 1:

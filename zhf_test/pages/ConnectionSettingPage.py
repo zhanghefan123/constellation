@@ -92,9 +92,11 @@ class ConnectionSettings(QWidget):
             # 更新接口的索引
             source_satellite.ethNum += 1
             dest_satellite.ethNum += 1
+            link_bandwidth_str = "SatToSat_"+self.comboBox1.currentText()
             self.data.allLinks.addLink(NODE_TYPE_SATELLITE, source_satellite, NODE_TYPE_SATELLITE, dest_satellite,
-                                       self.comboBox1.currentText(), cons_name,
-                                       source_satellite.ethNum, dest_satellite.ethNum)
+                                       link_bandwidth_str, cons_name,
+                                       source_satellite.ethNum, dest_satellite.ethNum,
+                                       interOrIntra=LINK_TYPE_SATELLITE_TO_SATELLITE_INTRA)
             # 下面进行相邻的轨道的星间链路的建立
             dest_orbit_index = src_orbit_index + 1
             dest_offset = src_offset
@@ -104,9 +106,11 @@ class ConnectionSettings(QWidget):
                 # 更新接口的索引
                 source_satellite.ethNum += 1
                 dest_satellite.ethNum += 1
+                link_bandwidth_str = "SatToSat_" + self.comboBox1.currentText()
                 self.data.allLinks.addLink(NODE_TYPE_SATELLITE, source_satellite, NODE_TYPE_SATELLITE, dest_satellite,
-                                           self.comboBox1.currentText(), cons_name,
-                                           source_satellite.ethNum, dest_satellite.ethNum)
+                                           link_bandwidth_str, cons_name,
+                                           source_satellite.ethNum, dest_satellite.ethNum,
+                                           interOrIntra=LINK_TYPE_SATELLITE_TO_SATELLITE_INTER)
         # 下面进行星地链路的建立
         # 首先进行每一颗卫星的遍历
         for satellite in nodes:
@@ -115,8 +119,9 @@ class ConnectionSettings(QWidget):
                 # 进行卫星和地面的链路的建立
                 satellite.ethNum += 1
                 ground.ethNum += 1
+                link_bandwidth_str = "SatToGround_" + self.comboBox2.currentText()
                 self.data.allLinks.addLink(NODE_TYPE_SATELLITE, satellite, NODE_TYPE_GROUNDSTATION, ground,
-                                           self.comboBox2.currentText(), cons_name, satellite.ethNum,
+                                           link_bandwidth_str, cons_name, satellite.ethNum,
                                            ground.ethNum, ground.groundStationName)
         # 然后我们需要将data之中的内容放到我们的tabWidget之中
         self.updateLinksTableWidget()
